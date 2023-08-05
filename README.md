@@ -1,5 +1,5 @@
-# Getting Started with Create React App
-
+# [https://sparkling-churros-8c479c.netlify.app/](https://sparkling-churros-8c479c.netlify.app/)
+# https://anime-list-snowy.vercel.app/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
