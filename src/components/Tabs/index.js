@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {TabsContainer} from './style';
 const Tabs = ({ anime, collections, onAddToCollection }) => {
     const [currentTab, setCurrentTab] = useState(1);

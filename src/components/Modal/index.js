@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
 import { ModalContainer } from './style';
 import { TabsContainer } from "../Tabs/style";

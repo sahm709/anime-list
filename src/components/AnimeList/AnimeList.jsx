@@ -6,7 +6,7 @@ import next from '../../assets/next.svg';
 import previous from '../../assets/previous.svg';
 const PER_PAGE = 10;
 
-const GET_ANIME_LIST = gql`
+export const GET_ANIME_LIST = gql`
   query AnimeList($page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
@@ -31,7 +31,8 @@ const GET_ANIME_LIST = gql`
   }
 `;
 
-function AnimeList() {
+
+const AnimeList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, error, data } = useQuery(GET_ANIME_LIST, {
     variables: {
