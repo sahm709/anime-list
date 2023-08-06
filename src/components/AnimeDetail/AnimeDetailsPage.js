@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
-import {AnimeDetailContainer} from './style';
-import parse from 'html-react-parser';
+import { AnimeDetailContainer } from "./style";
+import parse from "html-react-parser";
 import Modal from "../Modal";
 import { Link } from "react-router-dom";
 import { AnimeListContainer } from "../AnimeList/style";
@@ -29,12 +29,12 @@ const GET_ANIME_DETAILS = gql`
         year
         month
         day
-    }
-    endDate {
+      }
+      endDate {
         year
         month
         day
-    }   
+      }
     }
   }
 `;
@@ -54,17 +54,19 @@ function AnimeDetailsPage() {
     }
   }, []);
 
-
-  if (loading) return (<AnimeListContainer>
-    <div className="loader-container">
-      <div className="lds-dual-ring"></div>
-    </div>
-  </AnimeListContainer>);
+  if (loading)
+    return (
+      <AnimeListContainer>
+        <div className="loader-container">
+          <div className="lds-dual-ring"></div>
+        </div>
+      </AnimeListContainer>
+    );
   if (error) return <p>Error: {error.message}</p>;
 
   const anime = data?.Media;
   if (!anime) return <p>Anime not found</p>;
-  
+
   const findAnimeCollections = () => {
     const animeTitle =
       anime.title.english || anime.title.romaji || anime.title.native;
@@ -94,48 +96,62 @@ function AnimeDetailsPage() {
     <div>
       <AnimeDetailContainer>
         <div className="title-container">
-        <img src={anime.coverImage.large} alt="Anime Cover"/>
-        <div className="title-detail">
-          <h2>{anime.title.english || anime.title.romaji || anime.title.native}</h2>
-          <p className="text">Average Score: {anime.averageScore}</p>
-          <button className='btn' onClick={() => { 
-        setIsOpen(true);
-        window.scrollTo(0, 0);
-      }}>
-        Add to Collection
-      </button>
+          <img src={anime.coverImage.large} alt="Anime Cover" />
+          <div className="title-detail">
+            <h2>
+              {anime.title.english || anime.title.romaji || anime.title.native}
+            </h2>
+            <p className="text">Average Score: {anime.averageScore}</p>
+            <button
+              className="btn"
+              onClick={() => {
+                setIsOpen(true);
+                window.scrollTo(0, 0);
+              }}
+            >
+              Add to Collection
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="detail-container">
-        <div>
-          <h3>Status</h3>
-          <p className="text">Status: {anime.status}</p>
-          <p className="text">Start Date: {anime.startDate.day}/{anime.startDate.month}/{anime.startDate.year}   </p>
-          <p className="text">End Date: {anime.endDate.day}/{anime.endDate.month}/{anime.endDate.year} </p> 
+        <div className="detail-container">
+          <div>
+            <h3>Status</h3>
+            <p className="text">Status: {anime.status}</p>
+            <p className="text">
+              Start Date: {anime.startDate.day}/{anime.startDate.month}/
+              {anime.startDate.year}{" "}
+            </p>
+            <p className="text">
+              End Date: {anime.endDate.day}/{anime.endDate.month}/
+              {anime.endDate.year}{" "}
+            </p>
+          </div>
+          <div>
+            <h3>Genres</h3>
+            <p className="text">{anime.genres.join(", ")}</p>
+          </div>
+          <div>
+            <h3>Description</h3>
+            <p className="text">{parse(anime.description)}</p>
+          </div>
+          <div>
+            {animeCollections.length > 0 && <h3>Collected At</h3>}
+            <ul>
+              {animeCollections.length > 0 &&
+                animeCollections.map((collection, index) => (
+                  <Link
+                    className="text"
+                    to={`/collections/${encodeURIComponent(collection)}`}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                  >
+                    <li style={{ color: "#EEEEEE" }}>{collection}</li>
+                  </Link>
+                ))}
+            </ul>
+          </div>
         </div>
-        <div>
-          <h3>Genres</h3>
-          <p className="text">{anime.genres.join(", ")}</p>
-        </div>
-        <div>
-        <h3>Description</h3>
-          <p className="text">{parse(anime.description)}</p>
-        </div>
-        <div>
-        {animeCollections.length > 0 && (<h3>Collected At</h3>)}
-        <ul>
-        {animeCollections.length > 0 && animeCollections.map((collection, index) => (
-        <Link className="text" to={`/collections/${encodeURIComponent(collection)}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-          <li  style={{ color: '#EEEEEE'}}>{collection}</li>
-        </Link>
-      ))}
-      </ul>
-    
-        </div>
-      </div>
-      
-      {isOpen && <Modal setIsOpen={setIsOpen} anime={anime}/>}
-    
+
+        {isOpen && <Modal setIsOpen={setIsOpen} anime={anime} />}
       </AnimeDetailContainer>
     </div>
   );

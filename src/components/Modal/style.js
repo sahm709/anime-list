@@ -1,7 +1,7 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 export const ModalContainer = styled.div`
-.darkBG {
+  .darkBG {
     background-color: rgba(0, 0, 0, 0.2);
     width: 100vw;
     height: 100vh;
@@ -11,14 +11,14 @@ export const ModalContainer = styled.div`
     transform: translate(-50%, -50%);
     position: absolute;
   }
-  
+
   .centered {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   .modal {
     width: 40vw;
     height: 25vw;
@@ -28,7 +28,7 @@ export const ModalContainer = styled.div`
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   }
-  
+
   .modalHeader {
     height: 50px;
     background: white;
@@ -36,7 +36,7 @@ export const ModalContainer = styled.div`
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
   }
-  
+
   .heading {
     margin: 0;
     padding: 10px;
@@ -45,27 +45,27 @@ export const ModalContainer = styled.div`
     font-size: 18px;
     text-align: center;
   }
-  
+
   .modalContent {
     padding: 10px;
     font-size: 14px;
     color: #2c3e50;
     text-align: center;
   }
-  
+
   .modalActions {
     position: absolute;
     bottom: 2px;
     margin-bottom: 10px;
     width: 100%;
   }
-  
+
   .actionsContainer {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
-  
+
   .closeBtn {
     cursor: pointer;
     font-weight: 500;
@@ -84,20 +84,19 @@ export const ModalContainer = styled.div`
     margin-top: -7px;
     margin-right: -7px;
   }
-  
+
   .closeBtn:hover {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     transform: translate(-4px, 4px);
   }
-  
-  
+
   .button-container {
     position: absolute;
     bottom: 2px;
     margin-bottom: 10px;
     width: 100%;
   }
-.btn {
+  .btn {
     margin-top: 10px;
     cursor: pointer;
     font-weight: 500;
@@ -106,10 +105,10 @@ export const ModalContainer = styled.div`
     font-size: 0.8rem;
     border: none;
     color: #2c3e50;
-    background: #00ADB5;
+    background: #00adb5;
     transition: all 0.25s ease;
   }
-  
+
   .btn:hover {
     box-shadow: none;
     transform: none;
@@ -123,8 +122,8 @@ export const ModalContainer = styled.div`
     border-radius: 12px;
     font-size: 0.8rem;
     border: none;
-    color: #F4E0B9;
-    background: #FE0000;
+    color: #f4e0b9;
+    background: #fe0000;
     transition: all 0.25s ease;
   }
 
@@ -133,7 +132,7 @@ export const ModalContainer = styled.div`
     transform: none;
     background: whitesmoke;
   }
-  
+
   @media (max-width: 769px) {
     .modal {
       width: 70vw;
@@ -145,5 +144,4 @@ export const ModalContainer = styled.div`
       box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     }
   }
-  
-`
+`;

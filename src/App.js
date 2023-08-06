@@ -1,6 +1,12 @@
-import React  from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from} from "@apollo/client";
-import { onError } from '@apollo/client/link/error';
+import React from "react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AnimeList from "./components/AnimeList/AnimeList";
 import AnimeDetailsPage from "./components/AnimeDetail/AnimeDetailsPage";
@@ -14,7 +20,6 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
     });
   }
 });
-
 
 const link = from([
   errorLink,
@@ -31,12 +36,15 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-        <Header />
+          <Header />
           <Routes>
             <Route path="/" element={<AnimeList />} />
             <Route path="/anime/:id" element={<AnimeDetailsPage />} />
             <Route path="/collection" element={<CollectionList />} />
-            <Route path="/collections/:collectionName" element={<CollectionDetailPage />} />
+            <Route
+              path="/collections/:collectionName"
+              element={<CollectionDetailPage />}
+            />
           </Routes>
         </div>
       </Router>

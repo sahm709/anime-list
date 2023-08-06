@@ -12,7 +12,7 @@ const CollectionDetailPage = () => {
     if (storedCollections) {
       const collections = JSON.parse(storedCollections);
       const selectedCollection = collections.find(
-        (collection) => collection.name === collectionName
+        (collection) => collection.name === collectionName,
       );
       setCollection(selectedCollection);
     }
@@ -22,27 +22,35 @@ const CollectionDetailPage = () => {
     return <p>Collection not found</p>;
   }
 
-  console.log(collection)
+  console.log(collection);
 
   return (
     <AnimeListContainer>
       <h2 className="collection-name">{collection.name}</h2>
       <div className="container">
-      <div className="list">
-        {collection.anime.map((anime) => (
-          <Link key={anime.id} to={`/anime/${anime.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-          <div>
-              <div className="anime-card">
-                  <img className="banner" src={anime.coverImage.medium} alt="banner"></img>
+        <div className="list">
+          {collection.anime.map((anime) => (
+            <Link
+              key={anime.id}
+              to={`/anime/${anime.id}`}
+              style={{ color: "inherit", textDecoration: "inherit" }}
+            >
+              <div>
+                <div className="anime-card">
+                  <img
+                    className="banner"
+                    src={anime.coverImage.medium}
+                    alt="banner"
+                  ></img>
                   <div className="anime-detail">
-                      <p className="anime-title">{anime.title.romaji}</p>                          
+                    <p className="anime-title">{anime.title.romaji}</p>
                   </div>
+                </div>
               </div>
-          </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
         </div>
-        </div>
+      </div>
     </AnimeListContainer>
   );
 };
