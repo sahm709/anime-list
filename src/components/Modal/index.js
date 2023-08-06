@@ -11,6 +11,7 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
   
   const notifyCollectionChange = () => {
     // Dispatch a custom event to notify other components about the collection change
+    console.log("click");
     window.dispatchEvent(new Event("collectionsUpdated"));
   };
 
@@ -19,10 +20,13 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
     localStorage.setItem("collections", JSON.stringify(updatedCollections));
   };
   const handleAddToCollection = (collectionName, anime) => {
+    console.log(collectionName);
+    console.log(anime);
     const updatedCollections = [...collections];
     const collectionIndex = updatedCollections.findIndex(
       (collection) => collection.name === collectionName
     );
+    console.log(collectionIndex);
     if (collectionIndex !== -1) {
       // Add anime to an existing collection
       updatedCollections[collectionIndex].anime.push(anime);
@@ -33,8 +37,8 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
         anime: [anime],
       });
     }
-    notifyCollectionChange();
     updateCollections(updatedCollections);
+    notifyCollectionChange();
     setIsOpen(false);
   };
   const handleEditCollectionName = (newName) => {
