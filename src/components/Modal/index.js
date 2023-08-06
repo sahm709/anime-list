@@ -3,19 +3,14 @@ import { RiCloseLine } from "react-icons/ri";
 import { ModalContainer } from './style';
 import { TabsContainer } from "../Tabs/style";
 import Tabs from "../Tabs";
-const Modal = ({ anime, setIsOpen, page, collectionName }) => {
+const Modal = ({ anime, setIsOpen, page, collectionName, updateCollections  }) => {
   // Load collections from localStorage or set an empty array if not available
   const storedCollections = JSON.parse(localStorage.getItem("collections")) || [];
   const [collections, setCollections] = useState(storedCollections);
   const [newCollectionName, setNewCollectionName] = useState(collectionName);
-  
-  const notifyCollectionChange = () => {
-    // Dispatch a custom event to notify other components about the collection change
-    console.log("click");
-    window.dispatchEvent(new Event("collectionsUpdated"));
-  };
 
-  const updateCollections = (updatedCollections) => {
+
+  const upCollections = (updatedCollections) => {
     setCollections(updatedCollections);
     localStorage.setItem("collections", JSON.stringify(updatedCollections));
   };
@@ -37,8 +32,8 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
         anime: [anime],
       });
     }
+    upCollections(updatedCollections);
     updateCollections(updatedCollections);
-    notifyCollectionChange();
     setIsOpen(false);
   };
   const handleEditCollectionName = (newName) => {
@@ -48,7 +43,7 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
     setCollections(updatedCollections);
     // Save updated collections to localStorage
     localStorage.setItem("collections", JSON.stringify(updatedCollections));
-    notifyCollectionChange();
+    updateCollections(updatedCollections);
     setIsOpen(false);
   };
 
@@ -61,7 +56,7 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
       setCollections(updatedCollections);
       // Save updated collections to localStorage
       localStorage.setItem("collections", JSON.stringify(updatedCollections));
-      notifyCollectionChange();
+      updateCollections(updatedCollections);
       setIsOpen(false);
     }
   };
@@ -73,7 +68,7 @@ const Modal = ({ anime, setIsOpen, page, collectionName }) => {
     setCollections(updatedCollections);
     // Save updated collections to localStorage
     localStorage.setItem("collections", JSON.stringify(updatedCollections));
-    notifyCollectionChange();
+    updateCollections(updatedCollections);
     setIsOpen(false);
   };
   
